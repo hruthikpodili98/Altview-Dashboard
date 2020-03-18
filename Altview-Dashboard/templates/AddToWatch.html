@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<select id = 'companyList' >
+  {% for i in range(0,lent) %}
+
+  <option  id = {{companies[i]}}>{{companies[i]}}</option>>
+
+  {% endfor %}
+ </select>
+ <button id = 'add' onclick="myFunction()"> Add to list </button>
+<br>
+<p> The list of companies are </p>
+<br>
+<select id = 'selectedCompanies'> 
+{% for i in range(0,lent1) %}
+ <option  id = {{companyName[i]}}>{{companyName[i]}}</option>>
+  {% endfor %}
+</select>
+<button id = 'remove' onclick="myFunction1()">Remove from list </button>
+<a href="/intraday"> <button> Home </button> </a>
+<a href="/redirect_to_watchlist"><button>Refresh for changes</button></a>
+<script type="text/javascript">
+
+    function myFunction() {
+      
+      var select = document.getElementById("companyList");
+      var option = select.options[select.selectedIndex];
+      var y = option.value;
+      y = JSON.stringify(y);
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://127.0.0.1:5000/addToWatch");
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.send(y);
+  }
+  function myFunction1() {
+      
+      var select = document.getElementById("selectedCompanies");
+      var option = select.options[select.selectedIndex];
+      var y = option.value;
+      y = JSON.stringify(y);
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "http://127.0.0.1:5000/removeFromWatch");
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.send(y);
+  }
+
+</script>
+
+</body>
+</html>
