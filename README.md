@@ -1,5 +1,11 @@
 # Altview-Dashboard
 
+
+CONTSRAINTS :
+1. I have used HTML,CSS for front end.
+2. d3.js for data visualisation.
+3. Flask,a python framework for backend.
+
 ![](Screenshots/Code.png)
 (0)This is the code done in python on spyder platform,once we click on run button then an url will be generated and have to run that url in order to run the code.
 
